@@ -1,0 +1,6 @@
+.gui-container {
+  position: absolute;
+  top: 81px;
+  left: 8px;
+  z-index: 1;
+}

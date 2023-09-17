@@ -1,22 +1,27 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
+const { createToken } = require("../middlewares/index");
 const User = require("../models/user");
 
 exports.signup = async (req, res, next) => {
-  const { email, nick, password } = req.body;
+  const { email, name, password } = req.body;
   try {
-    const exUser = await User.findOne({ where: { email } });
-    console.log(exUser);
+    const exUser = await User.findOne({
+      where: { email },
+    });
     if (exUser) {
-      return res.status(404).json({ message: "이미 존재하는 이메일 입니다" });
+      return res.status(404).json({ error: "이미 존재하는 이메일 입니다" });
+    }
+    if (!name) {
+      return res.status(404).json({ error: "이름을 입력해 주세요" });
     }
 
     const hash = await bcrypt.hash(password, 12);
     await User.create({
       email,
-      nick,
+      name,
       password: hash,
+      positionId: 3,
     });
     return res.status(200).json({ message: "회원가입 성공" });
   } catch (error) {
@@ -45,17 +50,25 @@ exports.login = (req, res, next) => {
           return next(loginError);
         }
 
-        // 로그인 성공 후 토큰 생성
         try {
-          const token = jwt.sign(
-            { id: user.id, nick: user.nick }, // user 정보 사용
-            process.env.JWT_SECRET,
-            { expiresIn: "1m" }
-          );
-          // 토큰과 함께 응답 전송
+          //사용자 직급 정보추가
+          const userRole = await User.findOne({
+            where: { userId: user.userId },
+          });
+
+          if (!userRole) {
+            return res.status(404).json({ message: "없는 사용자 입니다" });
+          }
+
+          const positionId = userRole.dataValues.positionId;
+
+          // 로그인 성공 후 토큰 생성
+          const token = createToken(user);
+
           return res.json({
             message: "로그인성공",
             token,
+            positionId,
           });
         } catch (error) {
           console.error(error);
@@ -79,7 +92,3 @@ exports.logout = (req, res) => {
     }
   });
 };
-
-// exports.tokenLogout = (req, res) => {
-
-// }

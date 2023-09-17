@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../css/Navbar.css";
+import "../../css/loginPage.css";
 
 const Join = (props) => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
-    nick: "",
+    name: "",
     password: "",
   });
 
@@ -31,22 +29,16 @@ const Join = (props) => {
       console.log(`response: ${response}`);
 
       // 서버에서 응답을 받으면 원하는 동작을 수행할 수 있습니다.
-      console.log("회원 가입 성공:", response.data);
+      // console.log("회원 가입 성공:", response.data);
 
-      // 예를 들어, 회원 가입이 성공했을 때 MyPage로 이동할 수 있습니다.
-      navigate("/main");
+      // 모달 열고 응답 메세지 설정
     } catch (error) {
-      // 오류 처리
-      console.error("회원 가입 오류:", error);
+      //모달을 열고 오류 메세지를 설정
     }
   };
 
   return (
-    <form className="modalBox"
-    onSubmit={handleSubmit}>
-      <h1>회원가입</h1>
-      <p className="styleText">  
-        email</p>
+    <form className="joinBox" onSubmit={handleSubmit}>
       <input
         className="inputStyle"
         type="email"
@@ -54,34 +46,28 @@ const Join = (props) => {
         name="email"
         value={formData.email}
         onChange={handleChange}
-        placeholder="이메일"
+        placeholder="email"
       />
-      <p className="styleText">  
-        nick</p>
-      <input 
-      className="inputStyle"
-        type="nick"
-        id="nick"
-        name="nick"
+      <input
+        className="inputStyle"
+        type="name"
+        id="name"
+        name="name"
         value={formData.nick}
         onChange={handleChange}
-        placeholder="닉네임"
+        placeholder="Name"
       />
-      <p className="styleText">  
-      password</p>
-      <input 
-      className="inputStyle"
+      <input
+        className="inputStyle"
         type="password"
         id="password"
         name="password"
         value={formData.password}
         onChange={handleChange}
-        placeholder="비밀번호"
+        placeholder="Password"
       />
-      <button className="buttonStyle"
-        type="submit"
-      >
-        전송
+      <button className="buttonStyle" type="submit">
+        회원가입
       </button>
     </form>
   );

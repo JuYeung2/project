@@ -1,6 +1,9 @@
 const Sequelize = require("sequelize");
 const dotenv = require("dotenv");
 const User = require("./user");
+const Position = require("./position");
+const FullNotice = require("./fullNotice");
+const Answer = require("./answer");
 
 dotenv.config();
 
@@ -21,10 +24,26 @@ const sequelize = new Sequelize(db.database, db.username, db.password, {
 
 db.sequelize = sequelize;
 
+//모델 생성
 db.User = User;
+db.FullNotice = FullNotice;
+db.Answer = Answer;
+db.Position = Position;
 
-User.initiate(sequelize);
+//모델 초기화
+// User.initiate(sequelize);
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].init) {
+    db[modelName].init(sequelize);
+  }
+});
 
+//관계설정
 // User.associate(db);
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
 module.exports = db;

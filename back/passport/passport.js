@@ -7,13 +7,13 @@ const User = require("../models/user");
 module.exports = () => {
   //로그인시 실행, req.session 객체에 데이터 저장
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.userId);
   });
 
   //각 요청마다 실행 passport.session 미들웨어가 호출
   //조회한 정보를 req.user에 저장 -> 로그인한 사용자의 정보를 조회
-  passport.deserializeUser((id, done) => {
-    User.findOne({ where: { id } })
+  passport.deserializeUser((userId, done) => {
+    User.findOne({ where: { userId } })
       .then((user) => done(null, user))
       .catch((err) => done(err));
   });
@@ -56,7 +56,7 @@ module.exports = () => {
         console.log("kakao profile", profile);
         try {
           const exUser = await User.findOne({
-            where: { snsId: profile.id, provider: "kakao" },
+            where: { provider: "kakao" },
           });
           if (exUser) {
             done(null, exUser);
@@ -64,8 +64,8 @@ module.exports = () => {
             const newUser = await User.create({
               email: profile._join?.kakao_account?.email,
               nick: profile.displayName,
-              snsId: profile.id,
               provider: "kakao",
+              manager: true,
             });
             done(null, newUser);
           }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../../css/loginPage.css";
 
 const Logout = (props) => {
   const navigate = useNavigate();
@@ -18,8 +19,7 @@ const Logout = (props) => {
       localStorage.removeItem("token");
 
       console.log("로그아웃:", response.data);
-
-      navigate("/home");
+      window.location.reload(navigate("/"));
     } catch (error) {
       // 오류 처리
       console.error("로그아웃오류:", error);
@@ -28,8 +28,16 @@ const Logout = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>MainPage</h1>
-      <button type="submit">로그아웃</button>
+      <button
+        className="buttonStyleW"
+        style={{
+          fontSize: "10px",
+          fontWeight: "10px",
+        }}
+        type="submit"
+      >
+        로그아웃
+      </button>
     </form>
   );
 };

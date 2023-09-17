@@ -1,31 +1,233 @@
-.homePage {
-    background-image: url("../../public/img2.jpg");
-    /* 헤더 크기 72px */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    background-size: cover;
-    flex-direction: column;
-
+.homeBody {
+  width: 100vw;
+  height: 4700px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: #000;
 
 }
 
-.homeBox {
-    width: 100%;
-    height: 50%;
-    background: #6d1b1b;
-    display: flex;
-    justify-content: center;
+/* 전체 화면 */
+.homePage1Box {
+  width: 100vw;
+  height: 947px;
+  background-color: rgba(0, 255, 255, 0);
+  display: flex;
 }
 
-.homeImageBox {
-    background-image: url("../../public/img3.jpg");
-    width: 30%;
-    height: 100%;
-    /* 3개의 박스가 동일한 너비를 가짐 */
-    background: #271b6d;
-    border: 1px solid #000;
-    /* 간격을 조절할 마진을 추가합니다 */
+.homePage2Box {
+  width: 100vw;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+}
+
+.homePage3Box {
+  width: 100vw;
+  height: 700px;
+  display: flex;
+  margin-top: 20%;
+  background-color: #3caca700;
+  align-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.homePage4Box {
+  width: 100vw;
+  height: 500px;
+  background-color: #564b4b00;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homePage5Box {
+  display: flex;
+  width: 100vw;
+  height: 500px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homePage6Box {
+  display: flex;
+  width: 100vw;
+  height: 700px;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* 배경 밝기 조절 박스 */
+.homeBox1 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-size: cover;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  background-image: url('../../public/img1Box.png');
+  align-items: flex-start;
+  margin-top: 15%;
+}
+
+.homeBox2 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-size: cover;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  background-image: url('../../public/img2Box.png');
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* 숨겨진 상태에 대한 초기 스타일 화면  */
+.homePage1 {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-in-out, transform 2s ease-in-out;
+  background-image: url('../../public/img1.jpeg');
+  background-size: cover;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  /* 이미지를 중앙 정렬합니다. */
+}
+
+.homePage2 {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../public/img2.jpg');
+  background-size: cover;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  /* 이미지를 중앙 정렬합니다. */
+  margin-top: 10%;
+}
+
+.homePage3 {
+  width: 100vw;
+  height: 222px;
+  background-color: #0097EC;
+  z-index: 1;
+  position: relative;
+  transform: translateX(0);
+  transition: transform 0.7s ease-in-out;
+
+}
+
+/* 각 초기 스타일 화면안의 요소  */
+.homePage1LOGO {
+  width: 30vw;
+  background-size: contain;
+  margin-left: 8%;
+  display: flex;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  /* 이미지를 중앙 정렬합니다. */
+  background-image: url('../../public/img1Logo.png');
+}
+
+.homePage2LOGO {
+  width: 450px;
+  height: 261px;
+  margin-left: 5%;
+  background-size: contain;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  background-image: url('../../public/img2Logo.png');
+}
+
+.homePage3LOGO {
+  background-size: contain;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  /* 이미지를 중앙 정렬합니다. */
+  width: 500px;
+  height: 184px;
+  z-index: 2;
+  position: absolute;
+  margin-right: 6%;
+  /* 자식 요소를 absolute로 설정 */
+  background-image: url('../../public/img3Logo.png');
+}
+
+.homeBody5Logo {
+  background-image: url('../../public/Team.png');
+  width: 20vw;
+  height: 30vh;
+  background-size: contain;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  margin-bottom: 5%;
+}
+
+
+
+.homeBody4Icon {
+  display: flex;
+  width: 230px;
+  height: 230px;
+  margin-bottom: 100px;
+  background-size: contain;
+  /* 이미지를 딱 맞게 조절합니다. */
+  background-repeat: no-repeat;
+  /* 이미지 반복 없음 */
+  background-position: center center;
+  /* 이미지를 중앙 정렬합니다. */
+  background-image: url('../../public/page3Icon.png');
+}
+
+/* 텍스트 스타일 */
+.homePageTextW {
+  color: #ffffff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.homePageTextB {
+  color: #0097EC;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* visible 클래스가 추가되면 나타나는 애니메이션 */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.moveLeft {
+  transform: translateX(-80vw);
 
 }

@@ -1,0 +1,83 @@
+.proFileBackground {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.profileBox {
+  width: 950px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  display: flex;
+}
+
+.userProfile {
+  width: 30%;
+  height: 100%;
+  border-radius: 0px 5px 5px 0px;
+  background: #0097ec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userTextBox {
+  width: 90%;
+  height: 5%;
+  background-color: rgba(35, 85, 64, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dataBox {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(248, 248, 248, 0);
+  display: flex;
+}
+
+.userImg {
+  width: 120px;
+  height: 120px;
+  background-color: aliceblue;
+  border-radius: 100%;
+  margin-bottom: 5%;
+}
+
+
+
+.remainingSpace {
+  display: flex;
+  flex-direction: column;
+}
+
+.remainingSpace .userInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remainingSpace .userInfo p {
+  margin-right: 10px;
+  color: black; /* 검은색으로 변경 */
+  font-weight: bold;
+  font-family: Inter; /* 글꼴 지정 */
+  font-size: 15px;
+}
+
+.remainingSpace .userInfo .buttonContainer {
+    display:flex;
+    align-items:center;
+
+    button {
+      margin-left: 10px; /* 버튼 사이 간격 조절 */
+    }
+}

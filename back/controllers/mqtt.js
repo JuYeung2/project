@@ -23,12 +23,9 @@ exports.dataget = async (req, res) => {
       { $sort: { _id: -1 } },
     ]).limit(1);
     if (plcdata) {
-      console.log(plcdata);
-      // console.log(plcdata.payload);
-      // console.log(JSON.stringify(plcdata, 2));
       res.status(200).json(plcdata);
     } else {
-      res.status(404).json({ error: "데이터가 없습니다" });
+      res.status(400).json({ error: "데이터가 없습니다" });
     }
   } catch (error) {
     return res.status(500).json({ error: "데이터 조회 실패" });
