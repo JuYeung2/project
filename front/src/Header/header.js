@@ -12,21 +12,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Airplay from "@mui/icons-material/Airplay";
 import Dashboard from "@mui/icons-material/Dashboard";
 import Campaign from "@mui/icons-material/Campaign";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Notice from "../component/notice";
-import '../Header/header.css';
+import "../Header/header.css";
 import Logout from "../component/user/Logout";
 
 // 페이지 로딩시 로컬스토리지에서 토큰 가져와 사용자 인증 상태를 확인
 function Header() {
   const [token, setToken] = useState("");
-  const navigate = useNavigate(); // useNavigate 초기화
-  const location = useLocation(); // useLocation
+  const location = useLocation();
   const [numValue, setNumValue] = useState(0);
   const [position, setPosition] = useState("");
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
-  const toggleHandler =() => {
+  const toggleHandler = () => {
     setIsToggleOpen(!isToggleOpen);
   };
 
@@ -35,7 +34,7 @@ function Header() {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      console.log(storedToken)
+      console.log(storedToken);
     }
 
     const storedPosition = localStorage.getItem("position");
@@ -120,7 +119,7 @@ function Header() {
                 to="/noticeboard"
                 sx={{ color: "white" }}
               />
-              
+
               <Tab
                 label="마스터"
                 icon={<AccountCircleIcon />}
@@ -131,7 +130,7 @@ function Header() {
             </Tabs>
           )}
 
-          {token && position !== "1" && (
+          {token && position === "2" && (
             <Tabs value={numValue}>
               <Tab
                 label="홈"
@@ -142,9 +141,34 @@ function Header() {
               />
               <Tab
                 label="대시보드"
-                icon={<Airplay />}
+                icon={<Dashboard />}
                 component={Link}
                 to="/dash"
+                sx={{ color: "white" }}
+              />
+              <Tab
+                label="공지사항"
+                icon={<Airplay />}
+                component={Link}
+                to="/noticeboard"
+                sx={{ color: "white" }}
+              />
+              <Tab
+                label="계정"
+                icon={<AccountCircleIcon />}
+                component={Link}
+                sx={{ color: "white" }}
+                onClick={toggleHandler}
+              />
+            </Tabs>
+          )}
+          {token && position === "3" && (
+            <Tabs value={numValue}>
+              <Tab
+                label="홈"
+                icon={<HomeIcon />}
+                component={Link}
+                to="/"
                 sx={{ color: "white" }}
               />
               <Tab
@@ -187,7 +211,7 @@ function Header() {
         <div className="headerBody">
           <p>이름</p>
           <p>이메일</p>
-            <Logout />
+          <Logout />
         </div>
       )}
     </div>
