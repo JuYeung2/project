@@ -9,7 +9,10 @@ export default class Edukit {
     this.loaded = false;
     this.axes = {};
     this.Start = false; // 초기화
-    this.limit = null;
+    this.limit = 0;
+
+    this.count = 0;
+    this.chipHidden = true; // 칩이 처음에는 숨겨져 있음
   }
   // 매서드 정의
   async fileload(scene) {
@@ -98,6 +101,18 @@ export default class Edukit {
     const newChip = this.object.Tray.clone();
     this.newChip = newChip;
 
+    const newChip2 = this.object.Tray.clone();
+    this.newChip2 = newChip2;
+
+    const newChip3 = this.object.Tray.clone();
+    this.newChip3 = newChip3;
+
+    const newChip4 = this.object.Tray.clone();
+    this.newChip4 = newChip4;
+
+    const newChip5 = this.object.Tray.clone();
+    this.newChip5 = newChip5;
+
     body.scale.set(0.5, 0.5, 0.5);
 
     mesh1.position.y = -1.5;
@@ -171,8 +186,11 @@ export default class Edukit {
     Tray.position.set(-1.6, -3.3, 22.5);
     Tray2.position.set(-1.6, 3.5, 22.5);
 
-    newChip.position.set(-1.2, -3, 27);
+    newChip.position.set(-1.2, -3, 23);  //벨트 오면 27
     newChip.scale.set(0.5, 0.5, 0.5);
+
+    // newChip2.position.set(-1.2, -3, 23);
+    // newChip2.scale.set(0.5, 0.5, 0.5);
 
     group3.scale.set(1, 1, 1);
     VisionSensor.scale.set(0.3, 0.3, 0.3);
@@ -193,8 +211,12 @@ export default class Edukit {
     scene.add(Tray2);
 
     scene.add(newChip);
+    scene.add(newChip2);
+    scene.add(newChip3);
+    scene.add(newChip4);
+    scene.add(newChip5);
 
-    console.log(this.limit);
+
 
     // const chips = [];
     // for (let i = 0; i < limit; i++) {
@@ -204,12 +226,24 @@ export default class Edukit {
 
     this.loaded = true;
   }
+
+  moveChip(){
+    if (this.count === 0)
+    {
+      this.newChip.position.z += 0.01;
+    }
+    else{
+      
+    }
+    
+      // this.newChip.position.x += 0.01;
+      // this.newChip2.position.x += 0.001;
+  }
+
   // 리미트 수량과 no1 생산수량으로 칩 생성하기
   unitOne(count, limit) {
-    const chips = [];
     if (String(this.limit) !== limit) {
       this.limit += 1;
-      chips.push(this.limit);
       //console.log(chips);
       //console.log(this.limit,limit);
     } else {
@@ -222,7 +256,7 @@ export default class Edukit {
     // }
   }
 
-  // 칩 1호기 밀기 on일때,
+  // // 칩 1호기 밀기 on일때,
   actionChip(chip, no3) {
     if (this.Start === true) {
       if (chip === true && no3 === false) {
@@ -236,19 +270,19 @@ export default class Edukit {
     }
   }
 
-  // 칩 1호기 밀기 on일때,
-  actionChip(chip, no3) {
-    if (this.Start === true) {
-      if (chip === true && no3 === false) {
-        this.newChip.position.x += 0.02;
-      } else if (chip === true && no3 === true) {
-        this.newChip.position.set(
-          this.newChip.position.x,
-          this.newChip.position.y
-        );
-      }
-    }
-  }
+  // // 칩 1호기 밀기 on일때,
+  // actionChip(chip, no3) {
+  //   if (this.Start === true) {
+  //     if (chip === true && no3 === false) {
+  //       this.newChip.position.x += 0.02;
+  //     } else if (chip === true && no3 === true) {
+  //       this.newChip.position.set(
+  //         this.newChip.position.x,
+  //         this.newChip.position.y
+  //       );
+  //     }
+  //   }
+  // }
 
   //2호기 칩 도착
   unitTwo(chip, color) {

@@ -260,6 +260,7 @@ function WebGL() {
       requestId = requestAnimationFrame(tick);
       camera.updateMatrixWorld();
       camera.updateProjectionMatrix();
+      edukit.moveChip();
 
       if (edukitRef.current && edukitRef.current.loaded) {
         //edukitRef.current.start(currentStart.current, currentReset.current);
