@@ -54,7 +54,7 @@
 }
 
 .post-content {
-  font-size: 26px;
+  /* font-size: 26px; */
   align-items: center;
 }
 
@@ -91,11 +91,11 @@ label {
   margin-right: 10px;
 }
 
-input {
+/* input {
   width: 60%;
   padding: 5px;
   margin-right: 10px;
-}
+} */
 
 .changeButton {
   width: 20%;
@@ -135,6 +135,7 @@ button[type="butto"]:hover {
   display: flex;
   color: gray;
   width: 100%;
+  margin-bottom: 1rem;
   /* border-radius: 30px; */
 }
 
@@ -143,7 +144,8 @@ button[type="butto"]:hover {
   color: gray;
   width: 100%;
   /* border-radius: 30px; */
-  min-height: 50vh;
+  min-height: 40vh;
+  margin-bottom: 1rem;
 }
 
 .modal {
