@@ -6,6 +6,7 @@ import Edukit from "./loader";
 import GUI from "lil-gui";
 import "../css/gui.css";
 import "../css/dash.css";
+import axios from "axios";
 
 function WebGL() {
   const navigate = useNavigate();
@@ -47,6 +48,22 @@ function WebGL() {
   const currentGripper = useRef(no3Gripper);
 
   const edukitRef = useRef(null);
+
+  const data = {
+    DiceNumber: 0,
+  };
+
+  const fetchData = () => {
+    axios
+      .post(`http://192.168.0.124:8081/dice/diceSave`, data)
+      .then((response) => {
+        console.log(response.data);
+        console.log(1);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     const ws = new WebSocket("ws://192.168.0.124:8081");
@@ -165,6 +182,18 @@ function WebGL() {
     const gui = new GUI({ autoPlace: false });
     guiContainer.appendChild(gui.domElement);
 
+    const controlsElement = document.querySelector(".title");
+    controlsElement.textContent = "에듀킷 상태 및 제어";
+
+    const lilGuiElement = document.querySelector(".lil-gui");
+    lilGuiElement.style.setProperty("--background-color", "#112a4a");
+    lilGuiElement.style.setProperty("--title-background-color", "#0f2d51");
+    lilGuiElement.style.setProperty("--widget-color", "#25526f");
+    lilGuiElement.style.setProperty("--hover-color", "#25526f50");
+
+    lilGuiElement.style.setProperty("--font-size", "14px");
+    lilGuiElement.style.setProperty("--name-width", "25%");
+
     const edukit = new Edukit(); // edukit을 한 번만 불러옵니다.
     edukit.fileload(scene);
 
@@ -184,6 +213,7 @@ function WebGL() {
       NO3: "#FF0000",
       BELT: "#FF0000",
       reset: function () {
+        fetchData();
         const data = JSON.stringify({ tagId: "8", value: "1" });
         ws.send(data);
         window.location.reload(navigate("/dash"));
@@ -237,7 +267,7 @@ function WebGL() {
     updateCanvasSize();
 
     renderer.shadowMap.enabled = true;
-    renderer.setClearColor(0x1c2631);
+    renderer.setClearColor(0x112a4a);
 
     // 윈도우 크기가 변경될 때마다 크기 업데이트
     window.addEventListener("resize", () => {
